@@ -1,0 +1,12 @@
+.nav ul a {
+    padding: 20px;
+    color:rgb(92, 75, 75)
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
