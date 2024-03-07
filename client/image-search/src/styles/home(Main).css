@@ -1,0 +1,15 @@
+.pictures {
+margin: 30px;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+gap: 30px;
+justify-content: center ;
+}
+
+.pictures img {
+max-width: 350px;
+height: auto;
+/* object-fit: contain; */
+
+}

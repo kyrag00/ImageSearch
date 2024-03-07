@@ -1,5 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { ChangeEvent, useState } from "react";
+import "../styles/home(Main).css"
 
 interface IPicture {
     link: string;
