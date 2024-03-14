@@ -1,8 +1,10 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { ChangeEvent, useState } from "react";
 import "../styles/home(Main).css"
+import { Favourites } from "./Favourites";
 
-interface IPicture {
+
+export interface IPicture {
     // link: string;
     // title: string;
     [key: string] : any
@@ -13,6 +15,11 @@ export const Main = () => {
   const [searchLink, setSearchLink] = useState("");
   const [images, setImages] = useState<IPicture[]>([]);
   const [searchTime, setSearchTime] = useState<number | null>(null)
+
+  const [savedImages, setSavedImages] = useState<IPicture[]>([]);
+  const handleSaveClick = (imageLink: string) => {
+    setSavedImages([...savedImages, {link: imageLink}])
+  }
 
     const search = async () => {
         let searchTime: number = 0;
@@ -66,9 +73,13 @@ export const Main = () => {
           <p>The search took: {searchTime} ms</p>
           <section className="pictures">
             {images.map((image) => (
-                <img key={image.link} src={image.link} alt={image.title} />
+                <div key={image.link}>
+                <img src={image.link} alt={image.title} />
+                <button onClick={() => handleSaveClick(image.link)}>Save</button>
+                </div>
             ))}
           </section>
+          <Favourites savedImages={savedImages} />
         </>
       )}
     </>
