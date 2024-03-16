@@ -1,24 +1,15 @@
-// export const Favourites = ({}) => {
-//     return <>
-//     <h2>Favourite pictures</h2>
-    {/* <ul>
-        {savedImages.map((savedImage, index) => (
-            <li key={index}>
-                <img src={savedImage.link} alt="img" />
-            </li>
-        ))}
+import { useSavedImages } from "./Main";
+// import {IPicture} from "./Main"
 
-    </ul> */}
-//     </>
+// interface ISavedImages {
+//     savedImages: IPicture[];
 // }
-import {IPicture} from "./Main"
 
-interface ISavedImages {
-    savedImages: IPicture[];
-}
+// const savedImages: IPicture[] = []
 
-export const Favourites = ({savedImages}: ISavedImages) => {
-       
+export const Favourites = () => {
+
+    const savedImages = useSavedImages();
 
     return <>
     <h2>Favourite pictures</h2>

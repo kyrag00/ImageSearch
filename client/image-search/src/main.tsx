@@ -16,7 +16,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       redirect_uri: window.location.origin
     }}>
       <App/>
-      <RouterProvider router={router}></RouterProvider>
+      <RouterProvider router={router}>
+      </RouterProvider>
     
   </Auth0Provider>
   </React.StrictMode>,
