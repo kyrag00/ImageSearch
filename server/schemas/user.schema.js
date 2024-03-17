@@ -10,6 +10,7 @@ const imageSchema = Joi.object({
     likedImages: Joi.array().items(
         Joi.object({
             title: Joi.string().required(),
+            byteSize: Joi.number(),
             url: Joi.string().required()
         })
     ).required()

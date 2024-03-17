@@ -1,9 +1,26 @@
-{
-    "user": "fakeuser",
+[{
+    "user": "User1",
     "likedImages": [
     {
-        
-        "url": "http://......"
+        "title": "Image 1",
+        "byteSize": 2834672,
+        "url": "http://exampl.com/img1.jpg"
+    },
+    {
+        "title": "Image 2",
+        "byteSize": 1726823,
+        "url": "http://exampl.com/img2.jpg"
     }
     ]
+},
+{
+    "user": "User2",
+    "likedImages": [
+        {
+        "title": "Image 3",
+        "byteSize": 1763486,
+        "url": "http://exampl.com/img3.jpg"
+        }
+    ]
 }
+]

@@ -20,6 +20,7 @@ export const Main = () => {
   const [searchTime, setSearchTime] = useState<string | null>(null)
 
   const [savedImages, setSavedImages] = useState<IPicture[]>([]);
+
   const handleSaveClick = (imageLink: string) => {
     setSavedImages([...savedImages, {link: imageLink}])
   }
@@ -79,4 +80,4 @@ export const Main = () => {
     </>
   </SavedImagesContext.Provider>
   );
-};
+ }

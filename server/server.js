@@ -8,7 +8,18 @@ const app = express();
 app.use(express.json());
 app.use(cors())
 
-const images = require("./saved-image.json");
+// const images = require("./saved-image.json");
+let savedImages = [];
+try {
+    const data = fs.readFileSync("./saved-image.json", "utf-8")
+    savedImages = JSON.parse(data)
+} catch (err) {
+    console.log("Error reading saved file:", err)
+}
+
+app.get("/favs", (req, res) => {
+    res.status(200).json(savedImages)
+})
 
 app.post("/favs", (req, res) => {
     const {error} = imageSchema.validate(req.body, {abortEarly: false})
@@ -17,9 +28,10 @@ app.post("/favs", (req, res) => {
         return res.status(400).json(error)
     }
     
-    images.push(req.body)
-    fs.writeFileSync("./saved-image.json", JSON.stringify(images))
-    res.status(201).json(images)
+    savedImages.push(req.body)
+    
+    fs.writeFileSync("./saved-image.json", JSON.stringify(savedImages))
+    res.status(201).json(savedImages)
 })
 
 
