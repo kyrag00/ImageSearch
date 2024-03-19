@@ -19,6 +19,7 @@ export const Main = () => {
   const [searchLink, setSearchLink] = useState("");
   const [images, setImages] = useState<IPicture[]>([]);
   const [searchTime, setSearchTime] = useState<string | null>(null)
+  const [correctedQuery, setCorrectedQuery] = useState<string | null>(null);
 
   const [savedImages, setSavedImages] = useState<IPicture[]>([]);
 
@@ -39,6 +40,7 @@ export const Main = () => {
         const response = await fetch(`https://www.googleapis.com/customsearch/v1?key=${import.meta.env.VITE_GOOGLE_API_KEY}&cx=37c21eb6c26d647ab&num=10&searchType=image&q=${searchLink}`);
 
         const data = await response.json()
+        console.log(data);
 
         setSearchTime(data.searchInformation.formattedSearchTime);
 
@@ -46,6 +48,13 @@ export const Main = () => {
             const fetchedImages: IPicture[] = data.items.map((item: any) => ({link: item.link}))
             setImages(fetchedImages);
             console.log(fetchedImages);
+        }
+
+        if (data.spelling && data.spelling.correctedQuery) {
+            setCorrectedQuery(data.spelling.correctedQuery);
+        } 
+        else {
+            setCorrectedQuery(null)
         }
     }
      catch (error) {
@@ -84,6 +93,7 @@ export const Main = () => {
           <input type="text" value={searchLink} onChange={handleInputChange}/>
           <button onClick={search}>Search</button>
           <p>The search took: {searchTime} ms</p>
+        {correctedQuery && <p>Did you mean: {correctedQuery}</p>}
           <section className="pictures">
             {images.map((image) => (
                 <div key={image.link}>
