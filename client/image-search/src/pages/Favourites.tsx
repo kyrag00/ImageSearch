@@ -14,7 +14,7 @@ export const Favourites = () => {
     const savedImages = useSavedImages();
     
     return <>
-    <h2>Favourite pictures</h2>
+    <h2>Saved Images</h2>
     {savedImages.map((image, index) => (
        <div key={index}>
        <img src={image.link} alt={`Liked image ${index + 1}`} />

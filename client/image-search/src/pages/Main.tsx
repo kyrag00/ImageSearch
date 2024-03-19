@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { ChangeEvent, useState, createContext, useContext } from "react";
+import { ChangeEvent, useState, createContext, useContext, useEffect } from "react";
 import "../styles/home(Main).css"
 import { Favourites } from "./Favourites";
 import axios from "axios";
@@ -53,6 +53,21 @@ export const Main = () => {
     }
     return searchTime;
     }
+
+    useEffect(() => {
+        const fetchSavedImages = async () => {
+          try {
+            const response = await axios.get(`http://localhost:3000/favs/${user?.nickname}`);
+            setSavedImages(response.data);
+          } catch (error) {
+            console.error("Error fetching saved images", error);
+          }
+        };
+    
+        if (isAuthenticated && user) {
+          fetchSavedImages();
+        }
+      }, [isAuthenticated, user]);
     
     const handleInputChange = (event:ChangeEvent<HTMLInputElement>) => {
         setSearchLink(event.target.value)
