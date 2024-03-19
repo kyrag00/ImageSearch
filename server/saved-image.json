@@ -1,20 +1,21 @@
-{
-  ":user": [
-    {
-      "link": "https://i.natgeofe.com/n/4f5aaece-3300-41a4-b2a8-ed2708a0a27c/domestic-dog_thumb_2x1.jpg",
-      "user": "kg222pv"
-    },
-    {
-      "link": "https://cdn.britannica.com/92/212692-050-D53981F5/labradoodle-dog-stick-running-grass.jpg",
-      "user": "kg222pv"
-    },
-    {
-      "link": "https://vetmed.tamu.edu/news/wp-content/uploads/sites/9/2023/05/AdobeStock_472713009-1024x768.jpeg",
-      "user": "kyrag00"
-    },
-    {
-      "link": "https://media.4-paws.org/1/e/d/6/1ed6da75afe37d82757142dc7c6633a532f53a7d/VIER%20PFOTEN_2019-03-15_001-2886x1999-1920x1330.jpg",
-      "user": "kyrag00"
-    }
-  ]
-}
+[
+  {
+    "user": "kg222pv",
+    "favouriteImages": [
+      {
+        "link": "https://cdn.britannica.com/92/212692-050-D53981F5/labradoodle-dog-stick-running-grass.jpg"
+      }
+    ]
+  },
+  {
+    "user": "kyrag00",
+    "favouriteImages": [
+      {
+        "link": "https://vetmed.tamu.edu/news/wp-content/uploads/sites/9/2023/05/AdobeStock_472713009-1024x768.jpeg"
+      },
+      {
+        "link": "https://media.4-paws.org/1/e/d/6/1ed6da75afe37d82757142dc7c6633a532f53a7d/VIER%20PFOTEN_2019-03-15_001-2886x1999-1920x1330.jpg"
+      }
+    ]
+  }
+]

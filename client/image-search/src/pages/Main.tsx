@@ -22,24 +22,11 @@ export const Main = () => {
 
   const [savedImages, setSavedImages] = useState<IPicture[]>([]);
 
-//   const fetchSavedImages = async() => {
-//     try {
-//         const response = await axios.get("http//localhost:3000/favs")
-//         setSavedImages(response.data)
-//     } catch (error) {
-//         console.log("error fetching the saved images", error)
-//     }
-//   }
-
-//   useEffect(() => {
-//     fetchSavedImages()
-//   }, [])
-
-const {user} = useAuth0();
+  const {user} = useAuth0();
 
   const handleSaveClick = async (imageLink: string) => {
     try {
-        await axios.post("http://localhost:3000/favs/:user", { link: imageLink, user: user?.nickname });
+        await axios.post(`http://localhost:3000/favs/${user?.nickname}`, { link: imageLink});
       } catch (error) {
         console.log("Error saving image:", error);
       }
@@ -57,12 +44,6 @@ const {user} = useAuth0();
 
         if (data.items) {
             const fetchedImages: IPicture[] = data.items.map((item: any) => ({link: item.link}))
-            // ({...item}))
-            
-            // ({
-            //     link: item.link,
-            //     title: item.title
-            // }))
             setImages(fetchedImages);
             console.log(fetchedImages);
         }

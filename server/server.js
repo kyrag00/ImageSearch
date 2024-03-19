@@ -18,30 +18,42 @@ try {
 
 app.get("/favs/:user", (req, res) => {
     const user = req.params.user
-    const userImages = savedImages[user]
+    const userData = savedImages.find(data => data.user === user);
+    const userImages = userData ? userData.favouriteImages : [];
     res.status(200).json(userImages)
-    // res.status(200).json("Hej från get anrop")
 })
 
 app.post("/favs/:user", (req, res) => {
     const user = req.params.user;
 
-    if(!savedImages[user]) {
-        savedImages[user] = []
+    
+    const userData = savedImages.find(data => data.user === user);
+
+    if (userData) {
+        userData.favouriteImages.push({ link: req.body.link });
+    } else {
+        savedImages.push({ user: user, favouriteImages: [{ link: req.body.link }] });
     }
 
-    savedImages[user].push(req.body)
-    // const {error} = imageSchema.validate(req.body, {abortEarly: false})
+    console.log(user)
+    // const user = req.user.nickname;
+    // let userData = savedImages.find(data => data.user === user);
 
-    // if (error) {
-    //     return res.status(400).json(error)
+    // if(!userData) {
+    //     userData = {user: user, favouriteImages: []}
+    //     savedImages.push(userData)
     // }
-    
-    // savedImages.push(req.body)
 
-    // fs.writeFileSync("./saved-image.json", JSON.stringify(savedImages))
-    // res.status(201).json(savedImages)
+    // userData.favouriteImages.push({link: req.body.link})
+
+
+    // if(!savedImages[user]) {
+    //     savedImages[user] = []
+    // }
+
+    // savedImages[user].push(req.body)
+
     fs.writeFileSync("saved-image.json", JSON.stringify(savedImages, null, 2))
-    res.status(200).json("hej hej från post")
+    res.status(200).json(user)
 })
 app.listen(3000, () => console.log("Server is up and running..."))
