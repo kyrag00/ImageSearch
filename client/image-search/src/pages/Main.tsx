@@ -2,6 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { ChangeEvent, useState, createContext, useContext } from "react";
 import "../styles/home(Main).css"
 import { Favourites } from "./Favourites";
+import axios from "axios";
 
 //url/link is needed
 export interface IPicture { 
@@ -21,9 +22,30 @@ export const Main = () => {
 
   const [savedImages, setSavedImages] = useState<IPicture[]>([]);
 
-  const handleSaveClick = (imageLink: string) => {
-    setSavedImages([...savedImages, {link: imageLink}])
+//   const fetchSavedImages = async() => {
+//     try {
+//         const response = await axios.get("http//localhost:3000/favs")
+//         setSavedImages(response.data)
+//     } catch (error) {
+//         console.log("error fetching the saved images", error)
+//     }
+//   }
+
+//   useEffect(() => {
+//     fetchSavedImages()
+//   }, [])
+
+const {user} = useAuth0();
+
+  const handleSaveClick = async (imageLink: string) => {
+    try {
+        await axios.post("http://localhost:3000/favs/:user", { link: imageLink, user: user?.nickname });
+      } catch (error) {
+        console.log("Error saving image:", error);
+      }
+      console.log(user)
   }
+  
 
     const search = async () => {
     try {

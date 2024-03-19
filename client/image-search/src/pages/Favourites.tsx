@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useSavedImages } from "./Main";
+import axios from "axios";
 // import {IPicture} from "./Main"
 
 // interface ISavedImages {
@@ -10,7 +12,7 @@ import { useSavedImages } from "./Main";
 export const Favourites = () => {
 
     const savedImages = useSavedImages();
-
+    
     return <>
     <h2>Favourite pictures</h2>
     {savedImages.map((image, index) => (

@@ -1,2 +1,6 @@
-GET http://localhost:3000/favs
+GET http://localhost:3000/favs/:user
 Content-Type: application/json
+
+# {
+#     "test" : "test"
+# }
