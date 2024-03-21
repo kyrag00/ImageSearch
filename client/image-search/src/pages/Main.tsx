@@ -4,11 +4,8 @@ import "../styles/home(Main).css"
 import { Favourites } from "./Favourites";
 import axios from "axios";
 
-//url/link is needed
 export interface IPicture { 
     link: string;
-    // title: string;
-    // [key: string] : any
 }
 
 const SavedImagesContext = createContext<IPicture[]>([]);
@@ -34,7 +31,7 @@ export const Main = () => {
       console.log(user)
   }
   
-
+  
     const search = async () => {
     try {
         const response = await fetch(`https://www.googleapis.com/customsearch/v1?key=${import.meta.env.VITE_GOOGLE_API_KEY}&cx=37c21eb6c26d647ab&num=10&searchType=image&q=${searchLink}`);
@@ -82,6 +79,10 @@ export const Main = () => {
         setSearchLink(event.target.value)
     }
 
+    const searchWithCorrectQuery = (correctedQuery: string) => {
+        setSearchLink(correctedQuery)
+        search()
+    }
 
   return (
     <SavedImagesContext.Provider value={savedImages}>
@@ -93,7 +94,12 @@ export const Main = () => {
           <input type="text" value={searchLink} onChange={handleInputChange}/>
           <button onClick={search}>Search</button>
           <p>The search took: {searchTime} ms</p>
-        {correctedQuery && <p>Did you mean: {correctedQuery}</p>}
+        {correctedQuery && (
+        <p>Did you mean: {""}
+        <a href="#" onClick={() => searchWithCorrectQuery(correctedQuery)}>
+            {correctedQuery}
+        </a>
+        </p>)}
           <section className="pictures">
             {images.map((image) => (
                 <div key={image.link}>
