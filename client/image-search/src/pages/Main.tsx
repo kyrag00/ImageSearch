@@ -17,6 +17,7 @@ export const Main = () => {
   const [images, setImages] = useState<IPicture[]>([]);
   const [searchTime, setSearchTime] = useState<string | null>(null)
   const [correctedQuery, setCorrectedQuery] = useState<string | null>(null);
+  const [isLinkClicked, setIsLinkClicked] = useState(false);
 
   const [savedImages, setSavedImages] = useState<IPicture[]>([]);
 
@@ -31,7 +32,7 @@ export const Main = () => {
       console.log(user)
   }
   
-  
+
     const search = async () => {
     try {
         const response = await fetch(`https://www.googleapis.com/customsearch/v1?key=${import.meta.env.VITE_GOOGLE_API_KEY}&cx=37c21eb6c26d647ab&num=10&searchType=image&q=${searchLink}`);
@@ -84,6 +85,10 @@ export const Main = () => {
         search()
     }
 
+    const handleLinkClicked = () => {
+        setIsLinkClicked(true)
+    }
+
   return (
     <SavedImagesContext.Provider value={savedImages}>
     <>
@@ -94,9 +99,9 @@ export const Main = () => {
           <input type="text" value={searchLink} onChange={handleInputChange}/>
           <button onClick={search}>Search</button>
           <p>The search took: {searchTime} ms</p>
-        {correctedQuery && (
+        {correctedQuery && !isLinkClicked && (
         <p>Did you mean: {""}
-        <a href="#" onClick={() => searchWithCorrectQuery(correctedQuery)}>
+        <a href="#" onClick={() => {handleLinkClicked(), searchWithCorrectQuery(correctedQuery)}}>
             {correctedQuery}
         </a>
         </p>)}
