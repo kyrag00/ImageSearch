@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Favourites } from "./Favourites";
+// import { Favourites } from "./Favourites";
 import { Layout } from "./Layout";
 import { Main } from "./Main";
 import { NotFound } from "./NotFound";
@@ -15,10 +15,10 @@ export const router = createBrowserRouter([
                 element: <Main/>,
                 index: true,
             },
-            {
-                path: "/favs",
-                element: <Favourites/>
-            },
+            // {
+            //     path: "/favs/:user",
+            //     element: <Favourites/>
+            // },
     
         ]
     }
