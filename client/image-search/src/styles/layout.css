@@ -7,7 +7,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color:azure
+    background-color:rgba(225, 212, 197, 0.527);
   }
 
   header {

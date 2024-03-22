@@ -8,9 +8,9 @@ return <>
     <li>
         <NavLink to={"/"}>Home</NavLink>
     </li>
-    <li>
+    {/* <li>
         <NavLink to={"favs"}>Favourites</NavLink>
-    </li>
+    </li> */}
 </ul>
 </nav>
 

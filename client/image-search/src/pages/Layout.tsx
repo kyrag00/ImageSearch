@@ -11,7 +11,8 @@ export const Layout = () => {
         <Outlet/>
     </main>
     <footer>
-        Footer
+        <br />
+        <p>Image search</p>
     </footer>
     </>
 }
